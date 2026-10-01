@@ -1,0 +1,169 @@
+.homepage {
+    --home-bg: #f4f1e8;
+    --home-surface: #fffdf7;
+    --home-text: #1f2a24;
+    --home-primary: #1f6b4f;
+    --home-primary-dark: #174d3b;
+    --home-accent: #c6923b;
+    --home-border: #ddd8cb;
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    min-height: calc(100vh - 5rem);
+    padding: 4rem 1.25rem 6rem;
+   /* background:
+        radial-gradient(circle at top left, rgba(198, 146, 59, 0.12), transparent 35%),
+        linear-gradient(180deg, #f9f7f1 0%, var(--home-bg) 100%);*/
+    color: var(--home-text);
+    text-align: center;
+}
+
+/* Slides sit behind the content. Each remains visible for five seconds. */
+.slideshow {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition: opacity 2s ease-in-out, visibility 0s linear 2s,
+        transform 2s ease-in-out;
+    will-change: opacity, transform;
+}
+
+.slideActive {
+    opacity: 0.32;
+    visibility: visible;
+    transform: translate3d(0.8%, -0.5%, 0) scale(1.06);
+    transition: opacity 2s ease-in-out, visibility 0s,
+        transform 5s ease-out;
+}
+
+.slide:nth-child(even).slideActive {
+    transform: translate3d(-0.8%, 0.5%, 0) scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slide {
+        transition: none;
+        will-change: auto;
+    }
+
+}
+
+.homepage h1 {
+    max-width: 820px;
+    margin: 0;
+    color: var(--home-primary-dark);
+    font-family: "Hylia Serif", Georgia, serif;
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+}
+
+.homepage h1::after {
+    content: "";
+    display: block;
+    width: 72px;
+    height: 4px;
+    margin: 1.25rem auto 0;
+    border-radius: 999px;
+    background: var(--home-accent);
+}
+
+.monster__search {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.75rem;
+    width: min(100%, 700px);
+    padding: 1rem;
+    border: 1px solid var(--home-border);
+    border-radius: 18px;
+    background: rgba(255, 253, 247, 0.9);
+    box-shadow: 0 12px 30px rgba(31, 42, 36, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.monster__search__input {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
+    min-height: 48px;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--home-border);
+    border-radius: 12px;
+    outline: none;
+    background: #fff;
+    color: var(--home-text);
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.monster__search__input::placeholder {
+    color: #929994;
+}
+
+.monster__search__input:focus {
+    border-color: var(--home-primary);
+    box-shadow: 0 0 0 4px rgba(31, 107, 79, 0.12);
+}
+
+.monster__search__button {
+    min-height: 48px;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: var(--home-primary);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.monster__search__button:hover {
+    transform: translateY(-1px);
+    background: var(--home-primary-dark);
+    box-shadow: 0 8px 18px rgba(31, 107, 79, 0.18);
+}
+
+.monster__search__button:focus-visible,
+.monster__search__input:focus-visible {
+    outline: 3px solid rgba(198, 146, 59, 0.5);
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+    .homepage {
+        min-height: calc(100vh - 4rem);
+        padding: 3rem 1rem 5rem;
+    }
+
+    .monster__search {
+        grid-template-columns: 1fr;
+        padding: 0.8rem;
+    }
+
+    .monster__search__button {
+        width: 100%;
+    }
+}

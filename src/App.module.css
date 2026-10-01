@@ -1,0 +1,129 @@
+:global(body) {
+    margin: 0;
+    display: block;
+}
+
+:global(#root) {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    text-align: initial;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: #f4f1e8;
+}
+
+.header {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    min-height: 5rem;
+    padding: 0.75rem clamp(1rem, 4vw, 3rem);
+    border-bottom: 1px solid #ddd8cb;
+    background: #f9f7f1;
+}
+
+.header__title {
+    margin: 0;
+    font-family: "Hylia Serif", Georgia, serif;
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.header__brand,
+.header__brand:hover {
+    color: #174d3b;
+    text-decoration: none;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: #59665d;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.header__link:hover,
+.header__linkActive {
+    color: #174d3b;
+    text-decoration: underline;
+    text-decoration-color: #c6923b;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+}
+
+.header__link:focus-visible,
+.header__brand:focus-visible,
+.skipLink:focus-visible {
+    outline: 2px solid #c6923b;
+    outline-offset: 4px;
+}
+
+.main {
+    flex: 1;
+    min-width: 0;
+    margin-top: 1em;
+    background:
+        radial-gradient(circle at top left, rgba(198, 146, 59, 0.12), transparent 35%),
+        linear-gradient(180deg, #f9f7f1 0%, var(--home-bg) 100%);
+}
+
+.footer {
+    padding: 1rem;
+    border-top: 1px solid #ddd8cb;
+    color: #59665d;
+    background: #f4f1e8;
+    font-family: system-ui, sans-serif;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.skipLink {
+    position: absolute;
+    z-index: 20;
+    top: 0.5rem;
+    left: 1rem;
+    padding: 0.75rem 1rem;
+    background: #174d3b;
+    color: #fff;
+    transform: translateY(-200%);
+}
+
+.skipLink:focus {
+    transform: translateY(0);
+}
+
+@media (max-width: 420px) {
+    .header {
+        justify-content: center;
+        padding: 0.75rem 1rem;
+    }
+
+    .header__title {
+        width: 100%;
+        text-align: center;
+    }
+}

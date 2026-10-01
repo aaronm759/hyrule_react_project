@@ -1,0 +1,138 @@
+.monster {
+    --detail-bg: #f4f1e8;
+    --detail-surface: #fffdf7;
+    --detail-text: #1f2a24;
+    --detail-muted: #68726d;
+    --detail-green: #174d3b;
+    --detail-accent: #c6923b;
+    --detail-border: #ddd8cb;
+
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.1fr);
+    grid-template-areas:
+        "image name"
+        "image id"
+        "image description"
+        "image location"
+        "image drops";
+    align-content: center;
+    column-gap: clamp(1.5rem, 5vw, 4rem);
+    row-gap: 0.75rem;
+    width: min(1100px, calc(100% - 2rem));
+    min-height: min(640px, calc(100vh - 9rem));
+    margin: 2rem auto 4rem;
+    padding: clamp(1.25rem, 4vw, 3rem);
+    border: 1px solid var(--detail-border);
+    border-radius: 18px;
+    background: var(--detail-surface);
+    box-shadow: 0 12px 30px rgba(31, 42, 36, 0.1);
+    color: var(--detail-text);
+}
+
+.monster__name {
+    grid-area: name;
+    align-self: end;
+    margin: 0;
+    color: var(--detail-green);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-family: "Hylia Serif", Georgia, serif;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    text-transform: capitalize;
+}
+
+.monster__name::after {
+    content: "";
+    display: block;
+    width: 72px;
+    height: 4px;
+    margin-top: 1rem;
+    border-radius: 999px;
+    background: var(--detail-accent);
+}
+
+.monster__id {
+    grid-area: id;
+    margin: 0 0 0.5rem;
+    color: var(--detail-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.monster__image {
+    grid-area: image;
+    align-self: center;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--detail-border);
+    border-radius: 16px;
+    background: #e8e4da;
+}
+
+.monster__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.monster__description,
+.monster__location,
+.monster__drops {
+    margin: 0;
+    overflow-wrap: anywhere;
+    line-height: 1.7;
+}
+
+.monster__description {
+    grid-area: description;
+    font-size: 1.05rem;
+}
+
+.monster__location {
+    grid-area: location;
+}
+
+.monster__drops {
+    grid-area: drops;
+}
+
+.monster__location,
+.monster__drops {
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--detail-border);
+    color: var(--detail-muted);
+}
+
+@media (max-width: 760px) {
+    .monster {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "name"
+            "id"
+            "image"
+            "description"
+            "location"
+            "drops";
+        min-height: 0;
+        row-gap: 1rem;
+        margin: 1rem auto 3rem;
+    }
+
+    .monster__image {
+        max-height: 440px;
+    }
+}
+
+@media (max-width: 430px) {
+    .monster {
+        width: calc(100% - 1rem);
+        padding: 1rem;
+        border-radius: 16px;
+    }
+}
